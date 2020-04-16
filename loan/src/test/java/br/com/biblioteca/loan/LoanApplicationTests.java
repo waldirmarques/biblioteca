@@ -1,4 +1,4 @@
-package br.com.apibiblioteca.loan;
+package br.com.biblioteca.loan;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
