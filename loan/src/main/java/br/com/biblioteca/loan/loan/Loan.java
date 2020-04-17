@@ -36,14 +36,14 @@ public class Loan implements Serializable {
 
     //@ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "userApp_id")
-   // private UserApp userApp;
+    //private UserDTO userApp;
 
     //@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
    // @JoinTable(name = "LOAN_BOOK",
    //         joinColumns = @JoinColumn(name = "book_id"),
    //         inverseJoinColumns = @JoinColumn(name = "loan_id")
    // )
-    //private List<Book> books = new ArrayList<>();
+    //private List<BookDTO> books = new ArrayList<>();
 
     private String loanTime;
 

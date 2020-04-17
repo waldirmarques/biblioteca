@@ -7,4 +7,4 @@ CREATE TABLE book(
     year_book timestamp NULL,
 
     CONSTRAINT book_pkey PRIMARY KEY (id)
-)
+);

@@ -22,11 +22,11 @@ public class LoanDTO {
 
     private Long id;
 
-    //@NotNull
-    //private UserApp userApp;
+    @NotNull
+    private UserDTO userApp;
 
     //@NotEmpty
-    //private List<Book> books;
+    //private List<BookDTO> books;
 
     @NotEmpty
     private String loanTime;

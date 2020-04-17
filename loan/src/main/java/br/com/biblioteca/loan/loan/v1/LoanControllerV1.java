@@ -1,5 +1,7 @@
 package br.com.biblioteca.loan.loan.v1;
 
+import br.com.biblioteca.loan.feign.ConsultaBook;
+import br.com.biblioteca.loan.loan.BookDTO;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanService;
@@ -9,6 +11,7 @@ import br.com.biblioteca.loan.loan.services.ListPageLoanService;
 import br.com.biblioteca.loan.loan.services.SaveLoanService;
 import br.com.biblioteca.loan.loan.services.UpdateLoanService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,6 +39,14 @@ public class LoanControllerV1 {
     private final SaveLoanService saveLoanService;
     private final UpdateLoanService updateLoanService;
     private final DeleteLoanService deleteLoanService;
+
+    @Autowired
+    private ConsultaBook consultaBook;
+
+    @GetMapping(value = "testando/{id}") //lista emprestimos por id
+    public BookDTO findBook(@PathVariable Long id) {
+        return consultaBook.bookId(id);
+    }
 
     @GetMapping(value = "/{id}") //lista emprestimos por id
     public LoanDTO find(@PathVariable Long id) {

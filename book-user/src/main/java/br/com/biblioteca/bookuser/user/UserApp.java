@@ -25,6 +25,9 @@ public class UserApp implements Serializable {
     @Id
     private Long id;
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long specificID;
+
     private String name;
 
     private int age;
