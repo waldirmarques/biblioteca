@@ -1,4 +1,4 @@
-package  br.com.biblioteca.bookuser.user;
+package br.com.biblioteca.bookuser.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,21 +30,24 @@ public class UserAppDTO {
     @NotEmpty
     private String fone;
 
-    public static UserAppDTO from( br.com.biblioteca.bookuser.user.UserApp userApp) {
+    private byte[] specificID;
+
+    public static UserAppDTO from(UserApp userApp) {
         return UserAppDTO
                 .builder()
                 .id(userApp.getId())
+                .specificID(userApp.getSpecificID())
                 .name(userApp.getName())
                 .age(userApp.getAge())
                 .fone(userApp.getFone())
                 .build();
     }
 
-    public static List<UserAppDTO> fromAll(List< br.com.biblioteca.bookuser.user.UserApp> userApps) {
+    public static List<UserAppDTO> fromAll(List<br.com.biblioteca.bookuser.user.UserApp> userApps) {
         return userApps.stream().map(UserAppDTO::from).collect(Collectors.toList());
     }
 
-    public static Page<UserAppDTO> fromPage(Page< br.com.biblioteca.bookuser.user.UserApp> pages) {
+    public static Page<UserAppDTO> fromPage(Page<br.com.biblioteca.bookuser.user.UserApp> pages) {
         return pages.map(UserAppDTO::from);
     }
 

@@ -42,10 +42,13 @@ public class BookDTO {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate yearBook;
 
+    private byte[] specificID;
+
     public static BookDTO from(Book book) {
         return BookDTO
                 .builder()
                 .id(book.getId())
+                .specificID(book.getSpecificID())
                 .title(book.getTitle())
                 .resume(book.getResume())
                 .isbn(book.getIsbn())
