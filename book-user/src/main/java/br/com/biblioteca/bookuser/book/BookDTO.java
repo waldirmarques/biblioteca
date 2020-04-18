@@ -7,10 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,8 +39,8 @@ public class BookDTO {
     private String author; //autor
 
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date yearBook; //ano
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate yearBook;
 
     public static BookDTO from(Book book) {
         return BookDTO

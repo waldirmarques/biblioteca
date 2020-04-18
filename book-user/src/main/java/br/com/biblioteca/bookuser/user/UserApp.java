@@ -25,18 +25,13 @@ public class UserApp implements Serializable {
     @Id
     private Long id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long specificID;
+    private byte[] specificID;
 
     private String name;
 
     private int age;
 
     private String fone;
-
-    //@JsonIgnore
-    //@OneToMany(mappedBy = "userApp")
-    //private List<Loan> loans = new ArrayList<>();
 
     public UserApp(String name, int age, String fone) {
         this.name = name;

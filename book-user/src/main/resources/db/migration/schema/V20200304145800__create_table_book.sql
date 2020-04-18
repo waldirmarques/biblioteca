@@ -4,7 +4,7 @@ CREATE TABLE book(
     resume VARCHAR(500) NOT NULL,
     isbn VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
-    year_book timestamp NULL,
+    year_book DATE NULL,
 
     CONSTRAINT book_pkey PRIMARY KEY (id)
 );

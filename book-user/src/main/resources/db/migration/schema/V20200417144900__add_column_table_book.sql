@@ -1,1 +1,1 @@
-ALTER TABLE book ADD COLUMN specificID int8;
+ALTER TABLE book ADD COLUMN specificID bytea;

@@ -10,9 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -27,8 +26,7 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long specificID;
+    private byte[] specificID;
 
     private String title; //titulo
 
@@ -38,13 +36,9 @@ public class Book implements Serializable {
 
     private String author; //autor
 
-    private Date yearBook; //ano
+    private LocalDate yearBook; //ano
 
-    //@JsonIgnore
-    //    //@ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
-    //    //private List<Loan> loan = new ArrayList<>();
-
-    public Book(String title, String resume, String isbn, String author) {
+   public Book(String title, String resume, String isbn, String author) {
         this.title = title;
         this.resume = resume;
         this.isbn = isbn;
