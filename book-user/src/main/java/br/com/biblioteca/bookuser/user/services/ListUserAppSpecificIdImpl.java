@@ -1,3 +1,4 @@
+/*
 package br.com.biblioteca.bookuser.user.services;
 
 import br.com.biblioteca.bookuser.user.UserApp;
@@ -5,20 +6,17 @@ import br.com.biblioteca.bookuser.user.UserAppRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
-public class SaveUserAppServiceImpl implements SaveUserAppService {
+public class ListUserAppSpecificIdImpl implements ListUserAppSpecificId {
 
     private final UserAppRepository userAppRepository;
 
     @Override
-    public void insert(UserApp userApp) {
-        userAppRepository.save(userApp);
-        userApp.setSpecificID(gerarSpecificId(userApp.getId()));
-        userAppRepository.save(userApp);
-    }
-
-    public static String gerarSpecificId(Long id) {
-        return "00" + id;
+    public List<UserApp> findAllSpecificId(String id) {
+        return userAppRepository.findAllSpecificID(id);
     }
 }
+*/

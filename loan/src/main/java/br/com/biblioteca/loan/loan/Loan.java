@@ -43,16 +43,16 @@ public class Loan implements Serializable {
    //         joinColumns = @JoinColumn(name = "book_id"),
    //         inverseJoinColumns = @JoinColumn(name = "loan_id")
    // )
-    //private byte[] books;
+    private String book;
 
     private String loanTime;
 
-    public static Loan to(br.com.biblioteca.loan.loan.LoanDTO loanDTO) {
+    public static Loan to(LoanDTO loanDTO) {
         return Loan
                 .builder()
                 .id(loanDTO.getId())
                 .userApp(loanDTO.getUserApp())
-                //.books(loanDTO.getBooks())
+                .book(loanDTO.getBook())
                 .loanTime(loanDTO.getLoanTime())
                 .build();
     }

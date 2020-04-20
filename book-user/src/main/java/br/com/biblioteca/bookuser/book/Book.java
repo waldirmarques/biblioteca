@@ -26,7 +26,7 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private byte[] specificID;
+    private String specificID;
 
     private String title; //titulo
 

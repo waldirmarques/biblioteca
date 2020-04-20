@@ -38,16 +38,10 @@ public class BookControllerV1 {
     private final SaveBookService saveBookService;
     private final UpdateBookService updateBookService;
     private final DeleteBookService deleteBookService;
-    private final GetSpecificIdBookService getSpecificIdBookService;
 
     @GetMapping(value = "/{id}") //lista livros por id
     public BookDTO find(@PathVariable("id") Long id) {
         return BookDTO.from(getBookService.find(id));
-    }
-
-    @GetMapping(value = "/specificId/{id}") //lista usuário por id
-    public BookDTO find(@PathVariable String id) {
-        return BookDTO.from(getSpecificIdBookService.findBySpecificID(id));
     }
 
     @GetMapping //lista todos os livros

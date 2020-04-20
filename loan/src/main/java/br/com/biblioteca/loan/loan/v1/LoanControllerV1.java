@@ -1,10 +1,12 @@
 package br.com.biblioteca.loan.loan.v1;
 
-import br.com.biblioteca.loan.feign.ConsultaBook;
-import br.com.biblioteca.loan.feign.ConsultaUserApp;
+import br.com.biblioteca.loan.feign.GetBook;
+import br.com.biblioteca.loan.feign.GetUserApp;
 import br.com.biblioteca.loan.loan.BookDTO;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanDTO;
+import br.com.biblioteca.loan.loan.LoanReturnDTO;
+import br.com.biblioteca.loan.loan.UserDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanService;
 import br.com.biblioteca.loan.loan.services.GetLoanService;
 import br.com.biblioteca.loan.loan.services.ListLoanService;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,9 +38,9 @@ import java.util.List;
 public class LoanControllerV1 {
 
     @Autowired
-    private ConsultaBook consultaBook;
+    private GetBook getBook;
     @Autowired
-    private ConsultaUserApp consultaUserApp;
+    private GetUserApp getUserApp;
 
     private final GetLoanService getLoanService;
     private final ListLoanService listLoanService;
@@ -46,20 +49,24 @@ public class LoanControllerV1 {
     private final UpdateLoanService updateLoanService;
     private final DeleteLoanService deleteLoanService;
 
-
-    @GetMapping(value = "testando/{id}") //lista emprestimos por id
-    public BookDTO findBook(@PathVariable Long id) {
-        return consultaBook.bookId(id);
-    }
-
     @GetMapping(value = "/{id}") //lista emprestimos por id
-    public LoanDTO find(@PathVariable Long id) {
-        return LoanDTO.from(getLoanService.find(id));
+    public LoanReturnDTO find(@PathVariable Long id) {
+        Loan loan = getLoanService.find(id);
+        UserDTO userDTO = getUserApp.userId(loan.getUserApp());
+        BookDTO bookDTO = getBook.bookId(loan.getBook());
+        return LoanReturnDTO.from(loan, userDTO, bookDTO);
     }
 
     @GetMapping //lista todos os emprestimos
-    public List<LoanDTO> findAll() {
-        return LoanDTO.fromAll(listLoanService.findAll());
+    public List<LoanReturnDTO> findAll() {
+        List<LoanReturnDTO> loans = new ArrayList<>();
+        LoanReturnDTO loanReturnDTO = new LoanReturnDTO();
+        for (Loan loan: listLoanService.findAll()){
+            UserDTO userDTO = getUserApp.userId(loan.getUserApp());
+            BookDTO bookDTO = getBook.bookId(loan.getBook());
+            loans.add(loanReturnDTO.from(loan, userDTO, bookDTO));
+        }
+        return loans;
     }
 
     @GetMapping(params = {"page", "size"}) //lista todas os emprestimos com paginação

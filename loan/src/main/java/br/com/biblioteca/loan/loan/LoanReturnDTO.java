@@ -8,42 +8,33 @@ import lombok.Setter;
 import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.awt.print.Book;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(builderClassName = "Builder")
-public class LoanDTO {
+public class LoanReturnDTO {
 
     private Long id;
 
     @NotEmpty
-    private String userApp;
+    private UserDTO userApp;
 
     @NotEmpty
-    private String book;
+    private BookDTO book;
 
     @NotEmpty
     private String loanTime;
 
-    public static LoanDTO from(Loan loan) {
-        return LoanDTO
+    public static LoanReturnDTO from(Loan loan, UserDTO userDTO, BookDTO bookDTO) {
+        return LoanReturnDTO
                 .builder()
                 .id(loan.getId())
-                .userApp(loan.getUserApp())
-                .book(loan.getBook())
+                .userApp(userDTO)
+                .book(bookDTO)
                 .loanTime(loan.getLoanTime())
                 .build();
-
     }
-
-    public static Page<LoanDTO> fromPage(Page<Loan> pages) {
-        return pages.map(LoanDTO::from);
-    }
-
 }

@@ -5,9 +5,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(contextId = "fooBook", url = "http://localhost:9092/v1/api/book", name = "book-user")
-public interface ConsultaBook {
+@FeignClient(contextId = "GetBook", url = "http://localhost:9092/v2/api/book", name = "book-user")
+public interface GetBook {
 
     @GetMapping(value = "/{id}")
-    BookDTO bookId (@PathVariable Long id);
+    BookDTO bookId (@PathVariable String id);
 }

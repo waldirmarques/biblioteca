@@ -5,9 +5,6 @@ import br.com.biblioteca.bookuser.book.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 @RequiredArgsConstructor
 @Service
 public class SaveBookServiceImpl implements SaveBookService {
@@ -17,20 +14,12 @@ public class SaveBookServiceImpl implements SaveBookService {
     @Override
     public void insert(Book book) {
         bookRepository.save(book);
-        book.setSpecificID(gerarHash(book.getId()));
+        book.setSpecificID(gerarSpecificId(book.getId()));
         bookRepository.save(book);
     }
 
-    public static byte[] gerarHash(Long id) {
-        String frase = "book"+id;
-        String algoritmo = "MD5";
-        try {
-            MessageDigest md = MessageDigest.getInstance(algoritmo);
-            md.update(frase.getBytes());
-            return md.digest();
-        } catch (NoSuchAlgorithmException e) {
-            return null;
-        }
+    public static String gerarSpecificId(Long id) {
+        return "00" + id;
     }
 }
 

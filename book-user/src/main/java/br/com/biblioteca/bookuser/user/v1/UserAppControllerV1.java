@@ -1,9 +1,8 @@
-package  br.com.biblioteca.bookuser.user.v1;
+package br.com.biblioteca.bookuser.user.v1;
 
 import br.com.biblioteca.bookuser.user.UserApp;
 import br.com.biblioteca.bookuser.user.UserAppDTO;
 import br.com.biblioteca.bookuser.user.services.DeleteUserAppService;
-import br.com.biblioteca.bookuser.user.services.GetSpecificIdUserAppService;
 import br.com.biblioteca.bookuser.user.services.GetUserAppService;
 import br.com.biblioteca.bookuser.user.services.ListPageUserAppService;
 import br.com.biblioteca.bookuser.user.services.ListUserAppService;
@@ -37,16 +36,10 @@ public class UserAppControllerV1 {
     private final SaveUserAppService saveUserAppService;
     private final UpdateUserAppService updateUserAppService;
     private final DeleteUserAppService deleteUserAppService;
-    private final GetSpecificIdUserAppService getSpecificIdUserAppService;
 
     @GetMapping(value = "/{id}") //lista usuário por id
     public UserAppDTO find(@PathVariable Long id) {
         return UserAppDTO.from(getUserAppService.find(id));
-    }
-
-    @GetMapping(value = "/specificId/{id}") //lista usuário por id
-    public UserAppDTO find(@PathVariable String id) {
-        return UserAppDTO.from(getSpecificIdUserAppService.findBySpecificID(id));
     }
 
     @GetMapping //lista todos os usuários

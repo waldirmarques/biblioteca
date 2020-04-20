@@ -42,7 +42,7 @@ public class BookDTO {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate yearBook;
 
-    private byte[] specificID;
+    private String specificID;
 
     public static BookDTO from(Book book) {
         return BookDTO

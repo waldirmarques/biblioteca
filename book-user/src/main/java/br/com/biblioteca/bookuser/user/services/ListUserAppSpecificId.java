@@ -1,3 +1,4 @@
+/*
 package br.com.biblioteca.bookuser.user.services;
 
 import br.com.biblioteca.bookuser.user.UserApp;
@@ -5,8 +6,9 @@ import br.com.biblioteca.bookuser.user.UserApp;
 import java.util.List;
 
 @FunctionalInterface
-public interface ListUserAppService {
+public interface ListUserAppSpecificId {
 
-    List<UserApp> findAll();
+    List<UserApp> findAllSpecificId(String id);
 
 }
+*/

@@ -1,1 +1,3 @@
-INSERT INTO loan(loan_time) VALUES ('50 dias');
+INSERT INTO loan
+(loan_time, user_app, book)
+VALUES('50 dias', '001', '001');
