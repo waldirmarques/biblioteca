@@ -23,7 +23,7 @@ public class LoanDTO {
     private Long id;
 
     @NotNull
-    private UserDTO userApp;
+    private String userApp;
 
     //@NotEmpty
     //private List<BookDTO> books;
@@ -35,7 +35,7 @@ public class LoanDTO {
         return LoanDTO
                 .builder()
                 .id(loan.getId())
-                //.userApp(loan.getUserApp())
+                .userApp(loan.getUserApp())
                 //.books(loan.getBooks())
                 .loanTime(loan.getLoanTime())
                 .build();

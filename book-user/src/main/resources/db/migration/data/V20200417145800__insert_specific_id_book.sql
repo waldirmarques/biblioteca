@@ -1,1 +1,1 @@
-UPDATE book SET specificID = '821f03288846297c2cf43c34766a38f7' WHERE  id = 1;
+UPDATE book SET specificID = '001' WHERE  id = 1;

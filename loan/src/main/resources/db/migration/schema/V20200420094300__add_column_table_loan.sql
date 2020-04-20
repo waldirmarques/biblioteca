@@ -1,0 +1,1 @@
+ALTER TABLE loan ADD COLUMN specificIdUserApp bytea;

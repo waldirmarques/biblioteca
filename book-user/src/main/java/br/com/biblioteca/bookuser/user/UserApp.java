@@ -25,7 +25,7 @@ public class UserApp implements Serializable {
     @Id
     private Long id;
 
-    private byte[] specificID;
+    private String specificID;
 
     private String name;
 

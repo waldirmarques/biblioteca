@@ -4,10 +4,12 @@ import br.com.biblioteca.bookuser.book.Book;
 import br.com.biblioteca.bookuser.book.BookDTO;
 import br.com.biblioteca.bookuser.book.services.DeleteBookService;
 import br.com.biblioteca.bookuser.book.services.GetBookService;
+import br.com.biblioteca.bookuser.book.services.GetSpecificIdBookService;
 import br.com.biblioteca.bookuser.book.services.ListBookService;
 import br.com.biblioteca.bookuser.book.services.ListPageBookService;
 import br.com.biblioteca.bookuser.book.services.SaveBookService;
 import br.com.biblioteca.bookuser.book.services.UpdateBookService;
+import br.com.biblioteca.bookuser.user.UserAppDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -36,10 +38,16 @@ public class BookControllerV1 {
     private final SaveBookService saveBookService;
     private final UpdateBookService updateBookService;
     private final DeleteBookService deleteBookService;
+    private final GetSpecificIdBookService getSpecificIdBookService;
 
     @GetMapping(value = "/{id}") //lista livros por id
     public BookDTO find(@PathVariable("id") Long id) {
         return BookDTO.from(getBookService.find(id));
+    }
+
+    @GetMapping(value = "/specificId/{id}") //lista usuário por id
+    public BookDTO find(@PathVariable String id) {
+        return BookDTO.from(getSpecificIdBookService.findBySpecificID(id));
     }
 
     @GetMapping //lista todos os livros

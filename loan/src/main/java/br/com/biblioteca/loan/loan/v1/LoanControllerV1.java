@@ -1,6 +1,7 @@
 package br.com.biblioteca.loan.loan.v1;
 
 import br.com.biblioteca.loan.feign.ConsultaBook;
+import br.com.biblioteca.loan.feign.ConsultaUserApp;
 import br.com.biblioteca.loan.loan.BookDTO;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanDTO;
@@ -33,6 +34,11 @@ import java.util.List;
 @RequestMapping(value = "/v1/api/loan")
 public class LoanControllerV1 {
 
+    @Autowired
+    private ConsultaBook consultaBook;
+    @Autowired
+    private ConsultaUserApp consultaUserApp;
+
     private final GetLoanService getLoanService;
     private final ListLoanService listLoanService;
     private final ListPageLoanService listPageLoanService;
@@ -40,8 +46,6 @@ public class LoanControllerV1 {
     private final UpdateLoanService updateLoanService;
     private final DeleteLoanService deleteLoanService;
 
-    @Autowired
-    private ConsultaBook consultaBook;
 
     @GetMapping(value = "testando/{id}") //lista emprestimos por id
     public BookDTO findBook(@PathVariable Long id) {

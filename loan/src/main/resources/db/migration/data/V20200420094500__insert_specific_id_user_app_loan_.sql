@@ -1,0 +1,1 @@
+UPDATE loan SET specificIdUserApp = '821f03288846297c2cf43c34766a38f7' WHERE  id = 1;

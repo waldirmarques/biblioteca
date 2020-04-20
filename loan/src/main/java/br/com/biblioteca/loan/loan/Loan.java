@@ -36,14 +36,14 @@ public class Loan implements Serializable {
 
     //@ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "userApp_id")
-    //private UserDTO userApp;
+    private String userApp;
 
     //@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
    // @JoinTable(name = "LOAN_BOOK",
    //         joinColumns = @JoinColumn(name = "book_id"),
    //         inverseJoinColumns = @JoinColumn(name = "loan_id")
    // )
-    //private List<BookDTO> books = new ArrayList<>();
+    //private byte[] books;
 
     private String loanTime;
 
@@ -51,7 +51,7 @@ public class Loan implements Serializable {
         return Loan
                 .builder()
                 .id(loanDTO.getId())
-                //.userApp(loanDTO.getUserApp())
+                .userApp(loanDTO.getUserApp())
                 //.books(loanDTO.getBooks())
                 .loanTime(loanDTO.getLoanTime())
                 .build();

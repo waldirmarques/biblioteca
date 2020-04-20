@@ -30,7 +30,7 @@ public class UserAppDTO {
     @NotEmpty
     private String fone;
 
-    private byte[] specificID;
+    private String specificID;
 
     public static UserAppDTO from(UserApp userApp) {
         return UserAppDTO

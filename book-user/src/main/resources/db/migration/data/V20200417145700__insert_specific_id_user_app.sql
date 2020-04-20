@@ -1,1 +1,0 @@
-UPDATE user_app SET specificID = 'ee11cbb19052e40b07aac0ca060c23ee' WHERE  id = 1;
