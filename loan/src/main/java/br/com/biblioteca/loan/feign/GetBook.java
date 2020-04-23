@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface GetBook {
 
     @GetMapping(value = "/{id}")
-    BookDTO bookId (@PathVariable String id);
+    BookDTO bookId(@PathVariable String id);
 }

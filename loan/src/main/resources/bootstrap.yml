@@ -21,7 +21,7 @@ spring:
     data: classpath:/db/migration/data
     schema: classpath:/db/migration/schema
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/Api2
+    url: jdbc:postgresql://localhost:5432/bib2
     username: postgres
     password: postgres
   # JPA properties
