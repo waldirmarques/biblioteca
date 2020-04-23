@@ -1,9 +1,9 @@
 package br.com.biblioteca.loan.loan.services;
 
-import br.com.biblioteca.loan.loan.Loan;
+import br.com.biblioteca.loan.loan.LoanReturnDTO;
 
 @FunctionalInterface
 public interface GetLoanService {
 
-    Loan find(Long id);
+    LoanReturnDTO find(Long id);
 }

@@ -15,9 +15,6 @@ public class UpdateLoanServiceImpl implements UpdateLoanService {
     @Override
     public void update(Loan obj, Long id) {
         Loan loan = loanRepository.findById(id).orElseThrow(BookNotFoundException::new);
-
-        //loan.setUserApp(obj.getUserApp());
-        //loan.setBooks(obj.getBooks());
         loan.setLoanTime(obj.getLoanTime());
         loanRepository.save(loan);
     }

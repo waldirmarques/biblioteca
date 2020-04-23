@@ -1,11 +1,11 @@
 package br.com.biblioteca.loan.loan.services;
 
-import br.com.biblioteca.loan.loan.Loan;
+import br.com.biblioteca.loan.loan.LoanReturnDTO;
 
 import java.util.List;
 
 @FunctionalInterface
 public interface ListLoanService {
 
-    List<Loan> findAll();
+    List<LoanReturnDTO> findAll();
 }

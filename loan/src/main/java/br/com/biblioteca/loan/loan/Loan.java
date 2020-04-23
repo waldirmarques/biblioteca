@@ -34,18 +34,13 @@ public class Loan implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "userApp_id")
     private String userApp;
 
-    //@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-   // @JoinTable(name = "LOAN_BOOK",
-   //         joinColumns = @JoinColumn(name = "book_id"),
-   //         inverseJoinColumns = @JoinColumn(name = "loan_id")
-   // )
     private String book;
 
     private String loanTime;
+
+    private String loanSpecificID;
 
     public static Loan to(LoanDTO loanDTO) {
         return Loan
@@ -54,6 +49,7 @@ public class Loan implements Serializable {
                 .userApp(loanDTO.getUserApp())
                 .book(loanDTO.getBook())
                 .loanTime(loanDTO.getLoanTime())
+                .loanSpecificID(loanDTO.getLoanSpecificID())
                 .build();
     }
 }

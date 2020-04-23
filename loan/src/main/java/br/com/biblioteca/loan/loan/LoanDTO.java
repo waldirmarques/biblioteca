@@ -31,6 +31,8 @@ public class LoanDTO {
     @NotEmpty
     private String loanTime;
 
+    private String loanSpecificID;
+
     public static LoanDTO from(Loan loan) {
         return LoanDTO
                 .builder()
@@ -38,6 +40,7 @@ public class LoanDTO {
                 .userApp(loan.getUserApp())
                 .book(loan.getBook())
                 .loanTime(loan.getLoanTime())
+                .loanSpecificID(loan.getLoanSpecificID())
                 .build();
 
     }
