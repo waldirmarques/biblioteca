@@ -1,6 +1,5 @@
 package br.com.biblioteca.bookuser.book;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +12,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,16 +42,19 @@ public class BookDTO {
 
     private String specificID;
 
+    private String loanSpecificID;
+
     public static BookDTO from(Book book) {
         return BookDTO
                 .builder()
                 .id(book.getId())
-                .specificID(book.getSpecificID())
                 .title(book.getTitle())
                 .resume(book.getResume())
                 .isbn(book.getIsbn())
                 .author(book.getAuthor())
                 .yearBook(book.getYearBook())
+                .specificID(book.getSpecificID())
+                .loanSpecificID(book.getLoanSpecificID())
                 .build();
     }
 

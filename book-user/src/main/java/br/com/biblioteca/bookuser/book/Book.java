@@ -38,6 +38,8 @@ public class Book implements Serializable {
 
     private LocalDate yearBook; //ano
 
+    private String loanSpecificID;
+
    public Book(String title, String resume, String isbn, String author) {
         this.title = title;
         this.resume = resume;
@@ -45,7 +47,7 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public static Book to(br.com.biblioteca.bookuser.book.BookDTO bookDTO) {
+    public static Book to(BookDTO bookDTO) {
         return Book
                 .builder()
                 .id(bookDTO.getId())
@@ -54,6 +56,7 @@ public class Book implements Serializable {
                 .isbn(bookDTO.getIsbn())
                 .author(bookDTO.getAuthor())
                 .yearBook(bookDTO.getYearBook())
+                .loanSpecificID(bookDTO.getLoanSpecificID())
                 .build();
     }
 }

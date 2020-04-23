@@ -1,1 +1,0 @@
-ALTER TABLE user_app ADD COLUMN specificID VARCHAR (1000);

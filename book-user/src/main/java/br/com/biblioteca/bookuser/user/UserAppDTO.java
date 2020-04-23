@@ -32,14 +32,17 @@ public class UserAppDTO {
 
     private String specificID;
 
+    private String loanSpecificID;
+
     public static UserAppDTO from(UserApp userApp) {
         return UserAppDTO
                 .builder()
                 .id(userApp.getId())
-                .specificID(userApp.getSpecificID())
                 .name(userApp.getName())
                 .age(userApp.getAge())
                 .fone(userApp.getFone())
+                .specificID(userApp.getSpecificID())
+                .loanSpecificID(userApp.getLoanSpecificID())
                 .build();
     }
 

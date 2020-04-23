@@ -8,17 +8,18 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class UpdateUserAppServiceImpl implements UpdateUserAppService {
+public class UpdateUserAppSpecificIdLoanImpl implements UpdateUserAppSpecificIdLoan {
 
     private final UserAppRepository userAppRepository;
 
     @Override
-    public void update(UserApp userApp, Long id) {
-        UserApp user = userAppRepository.findById(id).orElseThrow(UserAppNotFoundException::new);
+    public void update(UserApp userApp, String id) {
+        UserApp user = userAppRepository.findBySpecificID(id).orElseThrow(UserAppNotFoundException::new);
 
         user.setName(user.getName());
         user.setAge(user.getAge());
         user.setFone(user.getFone());
+        user.setLoanSpecificID(userApp.getLoanSpecificID());
         userAppRepository.save(user);
     }
 }

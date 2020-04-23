@@ -25,13 +25,15 @@ public class UserApp implements Serializable {
     @Id
     private Long id;
 
-    private String specificID;
-
     private String name;
 
     private int age;
 
     private String fone;
+
+    private String specificID;
+
+    private String loanSpecificID;
 
     public UserApp(String name, int age, String fone) {
         this.name = name;
@@ -39,13 +41,14 @@ public class UserApp implements Serializable {
         this.fone = fone;
     }
 
-    public static UserApp to(br.com.biblioteca.bookuser.user.UserAppDTO userAppDTO) {
+    public static UserApp to(UserAppDTO userAppDTO) {
         return UserApp
                 .builder()
                 .id(userAppDTO.getId())
                 .name(userAppDTO.getName())
                 .age(userAppDTO.getAge())
                 .fone(userAppDTO.getFone())
+                .loanSpecificID(userAppDTO.getLoanSpecificID())
                 .build();
     }
 }

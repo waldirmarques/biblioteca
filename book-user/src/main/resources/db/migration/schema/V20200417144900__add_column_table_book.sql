@@ -1,1 +1,0 @@
-ALTER TABLE book ADD COLUMN specificID VARCHAR (1000);

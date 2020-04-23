@@ -1,1 +1,0 @@
-UPDATE book SET specificID = '001' WHERE  id = 1;
