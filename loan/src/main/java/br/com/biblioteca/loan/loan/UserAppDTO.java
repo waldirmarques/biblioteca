@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(builderClassName = "Builder")
-public class UserDTO {
+public class UserAppDTO {
 
     private Long id;
 
@@ -26,4 +26,8 @@ public class UserDTO {
 
     @NotEmpty
     private String fone;
+
+    private String specificID;
+
+    private String loanSpecificID;
 }

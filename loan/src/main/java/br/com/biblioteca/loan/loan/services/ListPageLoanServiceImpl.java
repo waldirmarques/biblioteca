@@ -3,7 +3,6 @@ package br.com.biblioteca.loan.loan.services;
 import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
 import br.com.biblioteca.loan.loan.Loan;
-import br.com.biblioteca.loan.loan.LoanDTO;
 import br.com.biblioteca.loan.loan.LoanRepository;
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +30,6 @@ public class ListPageLoanServiceImpl implements ListPageLoanService {
         for (Loan loan : loanRepository.findAll(pageRequest)) {
             loans.add(LoanReturnDTO.from(loan, getUserApp.userId(loan.getUserApp()), getBook.bookId(loan.getBook())));
         }
-        return loans.stream().map(LoanDTO::from);;
+        return (Page<LoanReturnDTO>) loans;
     }
 }

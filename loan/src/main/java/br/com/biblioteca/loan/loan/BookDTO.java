@@ -37,4 +37,8 @@ public class BookDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date yearBook; //ano
 
+    private String specificID;
+
+    private String loanSpecificID;
+
 }
