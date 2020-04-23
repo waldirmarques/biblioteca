@@ -3,6 +3,7 @@ package br.com.biblioteca.bookuser.user.v2;
 import br.com.biblioteca.bookuser.user.UserApp;
 import br.com.biblioteca.bookuser.user.UserAppDTO;
 import br.com.biblioteca.bookuser.user.services.GetSpecificIdUserAppService;
+import br.com.biblioteca.bookuser.user.services.ListUserAppSpecificIdService;
 import br.com.biblioteca.bookuser.user.services.UpdateUserAppSpecificIdLoan;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,7 +32,7 @@ public class UserAppControllerV2 {
     }
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    @PutMapping(value = "/{id}") //atualiza usuário
+    @PutMapping(value = "/{id}") //atualiza variavel loan em usuário
     public void update(@Valid @PathVariable String id, @RequestBody UserAppDTO userAppDTO) {
         updateUserAppSpecificIdLoan.update(UserApp.to(userAppDTO), id);
     }
