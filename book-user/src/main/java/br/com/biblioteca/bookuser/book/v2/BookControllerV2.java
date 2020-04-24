@@ -3,7 +3,9 @@ package br.com.biblioteca.bookuser.book.v2;
 import br.com.biblioteca.bookuser.book.Book;
 import br.com.biblioteca.bookuser.book.BookDTO;
 import br.com.biblioteca.bookuser.book.services.GetSpecificIdBookService;
+import br.com.biblioteca.bookuser.book.services.ListBookSpecificIdService;
 import br.com.biblioteca.bookuser.book.services.UpdateBookSpecificIdLoan;
+import br.com.biblioteca.bookuser.user.UserAppDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,10 +26,16 @@ public class BookControllerV2 {
 
     private final GetSpecificIdBookService getSpecificIdBookService;
     private final UpdateBookSpecificIdLoan updateBookSpecificIdLoan;
+    private final ListBookSpecificIdService listBookSpecificIdService;
 
     @GetMapping(value = "/{id}") //lista usuário por id
     public BookDTO find(@PathVariable String id) {
         return BookDTO.from(getSpecificIdBookService.findBySpecificID(id));
+    }
+
+    @GetMapping(value = "/loanSpecific/{id}")
+    public List<BookDTO> findAll(@PathVariable String id) {
+        return BookDTO.fromAll(listBookSpecificIdService.findAllSpecificId(id));
     }
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

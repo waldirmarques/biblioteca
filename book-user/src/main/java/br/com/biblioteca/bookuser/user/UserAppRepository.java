@@ -14,7 +14,7 @@ public interface UserAppRepository extends JpaRepository<UserApp, Long> {
 
     Optional<UserApp> findBySpecificID(String specificID);
 
-    //@Query("SELECT user FROM user_app user WHERE user.specificid = :id")
-    //List<UserApp> findAllSpecificID(@Param("id") String id);
+    @Query(value = "SELECT * FROM user_app WHERE loan_specificid = :id",nativeQuery = true)
+    List<UserApp> findAllSpecificID(@Param("id") String id);
 
 }

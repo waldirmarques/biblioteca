@@ -20,8 +20,8 @@ public class DeleteUserAppServiceImpl implements DeleteUserAppService {
         if (!userAppRepository.existsById(id)) {
             throw new UserAppNotDeletedException();
         }
-        Optional<UserApp> userApp = userAppRepository.findById(id);
-        if (userApp.get().getLoanSpecificID() != null){
+        UserApp userApp = userAppRepository.findById(id).get();
+        if (userApp.getLoanSpecificID() != null){
             throw new UserAppIntegrityException();
         }
         userAppRepository.deleteById(id);

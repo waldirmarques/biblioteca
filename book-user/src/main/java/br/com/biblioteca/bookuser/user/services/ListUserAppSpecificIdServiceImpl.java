@@ -15,6 +15,6 @@ public class ListUserAppSpecificIdServiceImpl implements ListUserAppSpecificIdSe
 
     @Override
     public List<UserApp> findAllSpecificId(String id) {
-        return null;
+        return userAppRepository.findAllSpecificID(id);
     }
 }
