@@ -51,4 +51,5 @@ public class UserApp implements Serializable {
                 .loanSpecificID(userAppDTO.getLoanSpecificID())
                 .build();
     }
+
 }

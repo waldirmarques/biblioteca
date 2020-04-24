@@ -23,8 +23,8 @@ public class ListLoanServiceImpl implements ListLoanService {
     @Override
     public List<LoanReturnDTO> findAll() {
         loans = new ArrayList<>();
-        for (Loan loan: loanRepository.findAll()){
-            loans.add(LoanReturnDTO.from(loan, getUserApp.userId(loan.getUserApp()), getBook.bookId(loan.getBook())));
+        for (Loan loan : loanRepository.findAll()) {
+            loans.add(LoanReturnDTO.from(loan, getUserApp.userId(loan.getUserApp()), getBook.bookAllId(loan.getLoanSpecificID())));
         }
         return loans;
     }

@@ -20,6 +20,6 @@ public class GetLoanServiceImpl implements GetLoanService {
     @Override
     public LoanReturnDTO find(Long id) {
         Loan loan = loanRepository.findById(id).orElseThrow(LoanNotFoundException::new);
-        return LoanReturnDTO.from(loan, getUserApp.userId(loan.getUserApp()), getBook.bookId(loan.getBook()));
+        return LoanReturnDTO.from(loan, getUserApp.userId(loan.getUserApp()), getBook.bookAllId(loan.getLoanSpecificID()));
     }
 }

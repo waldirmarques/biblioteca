@@ -1,9 +1,9 @@
 package br.com.biblioteca.bookuser.user.services;
 
-import br.com.biblioteca.bookuser.user.UserApp;
+import br.com.biblioteca.bookuser.user.LoanUserAppSpecificIdDTO;
 
 @FunctionalInterface
 public interface UpdateUserAppSpecificIdLoan {
 
-    void update(UserApp userApp, String id);
+    void update(LoanUserAppSpecificIdDTO loanUserAppSpecificIdDTO, String id);
 }

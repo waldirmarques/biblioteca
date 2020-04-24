@@ -6,10 +6,10 @@ import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
 import br.com.biblioteca.loan.feign.UpdateBook;
 import br.com.biblioteca.loan.feign.UpdateUserApp;
-import br.com.biblioteca.loan.loan.BookDTO;
 import br.com.biblioteca.loan.loan.Loan;
+import br.com.biblioteca.loan.loan.LoanBookSpecificIdDTO;
 import br.com.biblioteca.loan.loan.LoanRepository;
-import br.com.biblioteca.loan.loan.UserAppDTO;
+import br.com.biblioteca.loan.loan.LoanUserAppSpecificIdDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +22,8 @@ public class SaveLoanServiceImpl implements SaveLoanService {
     private final GetUserApp getUserApp;
     private final UpdateUserApp updateUserApp;
     private final UpdateBook updateBook;
+    private LoanUserAppSpecificIdDTO loanUserAppSpecificIdDTO = new LoanUserAppSpecificIdDTO();
+    private LoanBookSpecificIdDTO loanBookSpecificIdDTO = new LoanBookSpecificIdDTO();
 
     @Override
     public void insert(Loan loan) {
@@ -41,12 +43,10 @@ public class SaveLoanServiceImpl implements SaveLoanService {
         loan.setLoanSpecificID(gerarSpecificId(loan.getId()));
         loanRepository.save(loan);
 
-        UserAppDTO userAppDTO = getUserApp.userId(loan.getUserApp());
-        userAppDTO.setLoanSpecificID(loan.getLoanSpecificID());
-        updateUserApp.updateUserApp(loan.getUserApp(), userAppDTO);
-        BookDTO bookDTO = getBook.bookId(loan.getBook());
-        bookDTO.setLoanSpecificID(loan.getLoanSpecificID());
-        updateBook.updateBook(loan.getBook(), bookDTO);
+        loanUserAppSpecificIdDTO.setLoanSpecificID(loan.getLoanSpecificID());
+        loanBookSpecificIdDTO.setLoanSpecificID(loan.getLoanSpecificID());
+        updateUserApp.updateUserApp(loan.getUserApp(), loanUserAppSpecificIdDTO);
+        updateBook.updateBook(loan.getBook(), loanBookSpecificIdDTO);
     }
 
     public static String gerarSpecificId(Long id) {

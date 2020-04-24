@@ -1,6 +1,6 @@
 package br.com.biblioteca.bookuser.user.v2;
 
-import br.com.biblioteca.bookuser.user.UserApp;
+import br.com.biblioteca.bookuser.user.LoanUserAppSpecificIdDTO;
 import br.com.biblioteca.bookuser.user.UserAppDTO;
 import br.com.biblioteca.bookuser.user.services.GetSpecificIdUserAppService;
 import br.com.biblioteca.bookuser.user.services.ListUserAppSpecificIdService;
@@ -40,8 +40,8 @@ public class UserAppControllerV2 {
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @PutMapping(value = "/{id}") //atualiza variavel loan em usuário
-    public void update(@Valid @PathVariable String id, @RequestBody UserAppDTO userAppDTO) {
-        updateUserAppSpecificIdLoan.update(UserApp.to(userAppDTO), id);
+    public void update(@Valid @PathVariable String id, @RequestBody LoanUserAppSpecificIdDTO loanUserAppSpecificIdDTO) {
+        updateUserAppSpecificIdLoan.update(loanUserAppSpecificIdDTO, id);
     }
 
 }

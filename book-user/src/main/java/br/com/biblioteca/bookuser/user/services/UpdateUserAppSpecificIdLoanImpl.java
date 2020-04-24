@@ -1,6 +1,7 @@
 package br.com.biblioteca.bookuser.user.services;
 
 import br.com.biblioteca.bookuser.exceptions.UserAppNotFoundException;
+import br.com.biblioteca.bookuser.user.LoanUserAppSpecificIdDTO;
 import br.com.biblioteca.bookuser.user.UserApp;
 import br.com.biblioteca.bookuser.user.UserAppRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,13 +14,9 @@ public class UpdateUserAppSpecificIdLoanImpl implements UpdateUserAppSpecificIdL
     private final UserAppRepository userAppRepository;
 
     @Override
-    public void update(UserApp userApp, String id) {
+    public void update(LoanUserAppSpecificIdDTO loanUserAppSpecificIdDTO, String id) {
         UserApp user = userAppRepository.findBySpecificID(id).orElseThrow(UserAppNotFoundException::new);
-
-        user.setName(user.getName());
-        user.setAge(user.getAge());
-        user.setFone(user.getFone());
-        user.setLoanSpecificID(userApp.getLoanSpecificID());
+        user.setLoanSpecificID(loanUserAppSpecificIdDTO.getLoanSpecificID());
         userAppRepository.save(user);
     }
 }

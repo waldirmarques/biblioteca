@@ -14,27 +14,18 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(builderClassName = "Builder")
-public class LoanReturnDTO {
+public class LoanSaveDTO {
 
     private Long id;
 
     @NotEmpty
-    private UserAppDTO userApp;
+    private String userApp;
 
     @NotEmpty
-    private List<BookDTO> books;
+    private List<BookSaveDTO> books;
 
     @NotEmpty
     private String loanTime;
 
-    public static LoanReturnDTO from(Loan loan, UserAppDTO userAppDTO, List<BookDTO> bookDTO) {
-        return LoanReturnDTO
-                .builder()
-                .id(loan.getId())
-                .userApp(userAppDTO)
-                .loanTime(loan.getLoanTime())
-                .books(bookDTO)
-                .build();
-    }
-
+    private String loanSpecificID;
 }

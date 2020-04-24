@@ -3,6 +3,7 @@ package br.com.biblioteca.loan.loan.v1;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanDTO;
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
+import br.com.biblioteca.loan.loan.LoanUpdateDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanService;
 import br.com.biblioteca.loan.loan.services.GetLoanService;
 import br.com.biblioteca.loan.loan.services.ListLoanService;
@@ -10,7 +11,6 @@ import br.com.biblioteca.loan.loan.services.ListPageLoanService;
 import br.com.biblioteca.loan.loan.services.SaveLoanService;
 import br.com.biblioteca.loan.loan.services.UpdateLoanService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,8 +61,8 @@ public class LoanControllerV1 {
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @PutMapping(value = "/{id}") //atualizar uma emprestimo
-    public void update(@Valid @RequestBody LoanDTO loanDTO, @PathVariable Long id) {
-        updateLoanService.update(Loan.to(loanDTO), id);
+    public void update(@Valid @RequestBody LoanUpdateDTO loanUpdateDTO, @PathVariable Long id) {
+        updateLoanService.update(loanUpdateDTO, id);
     }
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

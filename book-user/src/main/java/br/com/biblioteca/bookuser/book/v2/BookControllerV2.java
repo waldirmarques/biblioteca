@@ -1,11 +1,10 @@
 package br.com.biblioteca.bookuser.book.v2;
 
-import br.com.biblioteca.bookuser.book.Book;
 import br.com.biblioteca.bookuser.book.BookDTO;
+import br.com.biblioteca.bookuser.book.LoanBookSpecificIdDTO;
 import br.com.biblioteca.bookuser.book.services.GetSpecificIdBookService;
 import br.com.biblioteca.bookuser.book.services.ListBookSpecificIdService;
 import br.com.biblioteca.bookuser.book.services.UpdateBookSpecificIdLoan;
-import br.com.biblioteca.bookuser.user.UserAppDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +39,7 @@ public class BookControllerV2 {
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @PutMapping(value = "/{id}") //atualiza usuário
-    public void update(@Valid @RequestBody BookDTO bookDTO, @PathVariable String id) {
-        updateBookSpecificIdLoan.updateSpecificId(Book.to(bookDTO), id);
+    public void update(@Valid @RequestBody LoanBookSpecificIdDTO loanBookSpecificIdDTO, @PathVariable String id) {
+        updateBookSpecificIdLoan.updateSpecificId(loanBookSpecificIdDTO, id);
     }
 }

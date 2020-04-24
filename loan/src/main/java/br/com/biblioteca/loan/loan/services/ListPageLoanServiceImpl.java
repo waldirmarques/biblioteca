@@ -27,7 +27,7 @@ public class ListPageLoanServiceImpl implements ListPageLoanService {
         loans = new ArrayList<>();
         PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "id");
         for (Loan loan : loanRepository.findAll(pageRequest)) {
-            loans.add(LoanReturnDTO.from(loan, getUserApp.userId(loan.getUserApp()), getBook.bookId(loan.getBook())));
+            loans.add(LoanReturnDTO.from(loan, getUserApp.userId(loan.getUserApp()), getBook.bookAllId(loan.getLoanSpecificID())));
         }
         return loans;
     }
