@@ -1,10 +1,11 @@
 package br.com.biblioteca.loan.loan.services;
 
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
-import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 @FunctionalInterface
 public interface ListPageLoanService {
 
-    Page<LoanReturnDTO> findPage(Integer page, Integer size);
+    List<LoanReturnDTO> findPage(Integer page, Integer size);
 }

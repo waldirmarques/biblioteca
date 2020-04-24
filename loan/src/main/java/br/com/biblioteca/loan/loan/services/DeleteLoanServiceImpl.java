@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class DeleteLoanServiceImpl implements DeleteLoanService {
+
     private final LoanRepository loanRepository;
     private final GetUserApp getUserApp;
     private final UpdateUserApp updateUserApp;

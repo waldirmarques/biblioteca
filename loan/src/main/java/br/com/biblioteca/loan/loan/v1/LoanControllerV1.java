@@ -49,7 +49,7 @@ public class LoanControllerV1 {
     }
 
     @GetMapping(params = {"page", "size"}) //lista todas os emprestimos com paginação
-    public Page<LoanReturnDTO> findPage(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+    public List<LoanReturnDTO> findPage(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
         return listPageLoanService.findPage(page, size);
     }
 
