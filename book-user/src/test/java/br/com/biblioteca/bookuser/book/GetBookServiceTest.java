@@ -52,8 +52,7 @@ public class GetBookServiceTest {
                 () -> assertThat(result.getAuthor(), is("Author Teste GET")),
                 () -> assertThat(result.getResume(), is("teste resume")),
                 () -> assertThat(result.getIsbn(), is("teste isbn")),
-                () -> assertThat(result.getTitle(), is("teste title")),
-                () -> assertThat(result.getSpecificID(), is("001"))
+                () -> assertThat(result.getTitle(), is("teste title"))
         );
     }
 

@@ -14,8 +14,6 @@ public class GetUserAppServiceImpl implements GetUserAppService {
 
     @Override
     public UserApp find(Long id) {
-        UserApp userApp = userAppRepository.findById(id).orElseThrow(UserAppNotFoundException::new);
-        userApp.setSpecificID("00" + id);
-        return userApp;
+        return userAppRepository.findById(id).orElseThrow(UserAppNotFoundException::new);
     }
 }

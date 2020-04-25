@@ -25,13 +25,13 @@ public class UserApp implements Serializable {
     @Id
     private Long id;
 
+    private String specificID;
+
     private String name;
 
     private int age;
 
     private String fone;
-
-    private String specificID;
 
     private String loanSpecificID;
 
