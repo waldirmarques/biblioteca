@@ -23,10 +23,8 @@ public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String specificID;
 
     private String title; //titulo
 
@@ -37,6 +35,8 @@ public class Book implements Serializable {
     private String author; //autor
 
     private LocalDate yearBook; //ano
+
+    private String specificID;
 
     private String loanSpecificID;
 

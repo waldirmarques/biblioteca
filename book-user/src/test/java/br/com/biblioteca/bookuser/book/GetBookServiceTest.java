@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -18,6 +19,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,17 +41,19 @@ public class GetBookServiceTest {
     void shouldFindByIdBook() { // testando buscar livro por id
 
         when(bookRepository.findById(anyLong())).thenReturn(
-                Optional.of(createBook().author("Author Teste GET").build())
+                Optional.of(createBook().id(1L).author("Author Teste GET").build())
         );
 
         Book result = this.findBook.find(1L);
 
         //verificação
         assertAll("book",
+                () -> assertThat(result.getId(), is(1L)),
                 () -> assertThat(result.getAuthor(), is("Author Teste GET")),
                 () -> assertThat(result.getResume(), is("teste resume")),
                 () -> assertThat(result.getIsbn(), is("teste isbn")),
-                () -> assertThat(result.getTitle(), is("teste title"))
+                () -> assertThat(result.getTitle(), is("teste title")),
+                () -> assertThat(result.getSpecificID(), is("001"))
         );
     }
 

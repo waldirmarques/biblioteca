@@ -16,9 +16,9 @@ public class UpdateUserAppServiceImpl implements UpdateUserAppService {
     public void update(UserApp userApp, Long id) {
         UserApp user = userAppRepository.findById(id).orElseThrow(UserAppNotFoundException::new);
 
-        user.setName(user.getName());
-        user.setAge(user.getAge());
-        user.setFone(user.getFone());
+        user.setName(userApp.getName());
+        user.setAge(userApp.getAge());
+        user.setFone(userApp.getFone());
         userAppRepository.save(user);
     }
 }

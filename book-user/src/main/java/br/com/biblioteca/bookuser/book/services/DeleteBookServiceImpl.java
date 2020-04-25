@@ -20,9 +20,12 @@ public class DeleteBookServiceImpl implements DeleteBookService {
         if (!bookRepository.existsById(id)) {
             throw new BookNotDeletedException();
         }
-        Optional<Book> book = bookRepository.findById(id);
-        if (book.get().getLoanSpecificID() != null) {
-            throw new BookIntegrityException();
+        Optional<Book> bookApp = bookRepository.findById(id);
+        if (bookApp.isPresent()){
+            Book book = bookApp.get();
+            if (book.getLoanSpecificID() != null){
+                throw new BookIntegrityException();
+            }
         }
         bookRepository.deleteById(id);
     }
