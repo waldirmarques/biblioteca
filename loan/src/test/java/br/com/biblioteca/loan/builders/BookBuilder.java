@@ -3,7 +3,6 @@ package br.com.biblioteca.loan.builders;
 import br.com.biblioteca.loan.loan.BookDTO;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class BookBuilder {
 
@@ -14,7 +13,7 @@ public class BookBuilder {
                 .resume("teste resume")
                 .isbn("teste isbn")
                 .author("teste author")
-                .yearBook(LocalDate.ofEpochDay(25-04-2020))
+                .yearBook(LocalDate.ofEpochDay(25 - 04 - 2020))
                 .specificID("001")
                 .loanSpecificID("001");
     }

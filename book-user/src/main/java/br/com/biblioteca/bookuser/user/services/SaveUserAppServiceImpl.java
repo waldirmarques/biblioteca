@@ -14,5 +14,12 @@ public class SaveUserAppServiceImpl implements SaveUserAppService {
     @Override
     public void insert(UserApp userApp) {
         userAppRepository.save(userApp);
+        userApp.setLoanSpecificID(gerarSpecificId(userApp.getId()));
+        userAppRepository.save(userApp);
     }
+
+    public static String gerarSpecificId(Long id) {
+        return "00" + id;
+    }
+
 }

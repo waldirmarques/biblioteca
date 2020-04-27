@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
+import static br.com.biblioteca.loan.builders.LoanUpdate.createLoanUpdate;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -28,6 +29,7 @@ public class UpdateLoanServiceTest {
 
     @Mock
     private LoanRepository loanRepository;
+    @Mock
     private UpdateLoanServiceImpl updateLoan;
 
     @BeforeEach
@@ -35,14 +37,13 @@ public class UpdateLoanServiceTest {
         this.updateLoan = new UpdateLoanServiceImpl(loanRepository);
     }
 
-    /*
     @Test
     @DisplayName("Deve atualizar um Loan")
     void shouldUpdateLaon() {
 
         when(loanRepository.findById(1L)).thenReturn(Optional.of(createLoan().id(1L).build()));
 
-        updateLoan.update(createLoan().loanTime("teste update").build(), 1L);
+        updateLoan.update(createLoanUpdate().loanTime("teste update").build(), 1L);
 
         //preparação
         ArgumentCaptor<Loan> captorLoan = ArgumentCaptor.forClass(Loan.class);
@@ -52,16 +53,13 @@ public class UpdateLoanServiceTest {
 
         //verificação
         assertAll("Loan",
-                () -> assertThat(result.getUserApp(), is("teste nome")),
-                () -> assertThat(result.getBook(), is("teste title")),
+                () -> assertThat(result.getUserApp(), is("001")),
+                () -> assertThat(result.getBook(), is("001")),
                 () -> assertThat(result.getLoanTime(), is("teste update"))
         );
 
 
-
-
     }
 
-     */
 }
 

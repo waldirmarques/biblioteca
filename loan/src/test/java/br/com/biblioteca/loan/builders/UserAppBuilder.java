@@ -4,7 +4,7 @@ import br.com.biblioteca.loan.loan.UserAppDTO;
 
 public class UserAppBuilder {
 
-    public static UserAppDTO.Builder createUserApp(){
+    public static UserAppDTO.Builder createUserApp() {
         return UserAppDTO
                 .builder()
                 .name("teste nome")

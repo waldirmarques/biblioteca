@@ -14,6 +14,7 @@ import static br.com.biblioteca.bookuser.book.builders.BookBuilder.createBook;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,7 +40,7 @@ public class SaveBookServiceTest {
 
         //preparação
         ArgumentCaptor<Book> captorBook = ArgumentCaptor.forClass(Book.class);
-        verify(bookRepository).save(captorBook.capture());
+        verify(bookRepository, times(2)).save(captorBook.capture());
 
         Book result = captorBook.getValue();
 

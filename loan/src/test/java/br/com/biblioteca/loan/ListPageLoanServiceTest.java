@@ -2,7 +2,6 @@ package br.com.biblioteca.loan;
 
 import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
-import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanRepository;
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
 import br.com.biblioteca.loan.loan.services.ListPageLoanServiceImpl;
@@ -14,15 +13,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import static br.com.biblioteca.loan.builders.BookBuilder.createBook;
 import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
+import static br.com.biblioteca.loan.builders.UserAppBuilder.createUserApp;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,8 +35,14 @@ public class ListPageLoanServiceTest {
 
     @Mock
     private LoanRepository loanRepository;
+
+    @Mock
     private ListPageLoanServiceImpl listPageLoan;
+
+    @Mock
     private GetBook getBook;
+
+    @Mock
     private GetUserApp getUserApp;
 
 
@@ -46,12 +55,16 @@ public class ListPageLoanServiceTest {
     @DisplayName("Deve retornar todos os emprestimos com paginação")
     void shouldFindAllBook() {
 
-        /*
-        when(listPageLoan.findPage(0,2)).thenReturn((new PageImpl<>(Collections.nCopies(2, createLoan().build())));
+        when(loanRepository.findAll()).thenReturn(Arrays.asList(
+                createLoan().build(), createLoan().build()
+        ));
 
-        List<LoanReturnDTO> loanPage = listPageLoan.findPage(0, 2);
+        when(getUserApp.userId(anyString())).thenReturn(createUserApp().build());
 
-        verificação
+        when(getBook.bookAllId(anyString())).thenReturn(Stream.of(createBook().author("Author Teste GET 01").build()).collect(Collectors.toList()));
+
+        Page<LoanReturnDTO> loanPage = listPageLoan.findPage(Pageable.unpaged());
+
         assertAll("loan",
                 () -> assertThat(loanPage.getNumber(), is(0)),
                 () -> assertThat(loanPage.getSize(), is(2)),
@@ -63,6 +76,5 @@ public class ListPageLoanServiceTest {
                 () -> assertThat(loanPage.getContent().get(1).getLoanTime(), is("50 dias"))
         );
 
-         */
     }
 }

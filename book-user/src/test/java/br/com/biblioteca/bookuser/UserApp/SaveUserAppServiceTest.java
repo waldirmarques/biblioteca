@@ -17,6 +17,7 @@ import static br.com.biblioteca.bookuser.UserApp.builders.UserAppBuilder.createU
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,7 +43,7 @@ public class SaveUserAppServiceTest {
 
         //preparação
         ArgumentCaptor<UserApp> captorUserApp = ArgumentCaptor.forClass(UserApp.class);
-        verify(userAppRepository).save(captorUserApp.capture());
+        verify(userAppRepository,times(2)).save(captorUserApp.capture());
 
         UserApp result = captorUserApp.getValue();
 

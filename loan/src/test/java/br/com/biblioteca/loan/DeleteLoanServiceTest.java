@@ -20,6 +20,7 @@ import java.util.Optional;
 import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -31,8 +32,11 @@ public class DeleteLoanServiceTest {
 
     @Mock
     private LoanRepository loanRepository;
+    @Mock
     private DeleteLoanServiceImpl deleteLoan;
+    @Mock
     private UpdateUserApp updateUserApp;
+    @Mock
     private UpdateBook updateBook;
 
     @BeforeEach
@@ -51,9 +55,9 @@ public class DeleteLoanServiceTest {
     @Test
     @DisplayName("Deve deletar um emprestimo e atualizar o campo de loanSpecificID em book e user")
     void shouldLoanDeletedUpdateLoanSpecificIdMicroservices() {
-        lenient().when(loanRepository.existsById(1L)).thenReturn(true);
-        //when(loanRepository.findById(1L)).thenReturn(Optional.of(createLoan().id(1L).build()));
-        //verify(updateBook.updateBook("001", new LoanBookSpecificIdDTO());
+        when(loanRepository.existsById(1L)).thenReturn(true);
+        when(loanRepository.findById(1L)).thenReturn(Optional.of(createLoan().id(1L).build()));
+        //updateBook.updateBook("001", new LoanBookSpecificIdDTO(null));
         //updateUserApp.updateUserApp("001", new LoanUserAppSpecificIdDTO(null));
         deleteLoan.delete(1L);
         verify(loanRepository).existsById(1L);

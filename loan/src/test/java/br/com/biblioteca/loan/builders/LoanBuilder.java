@@ -9,6 +9,7 @@ public class LoanBuilder {
                 .builder()
                 .userApp("001")
                 .book("001")
-                .loanTime("50 dias");
+                .loanTime("50 dias")
+                .loanSpecificID("001");
     }
 }

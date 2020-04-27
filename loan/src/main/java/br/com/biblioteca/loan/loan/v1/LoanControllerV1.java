@@ -11,6 +11,8 @@ import br.com.biblioteca.loan.loan.services.ListPageLoanService;
 import br.com.biblioteca.loan.loan.services.SaveLoanService;
 import br.com.biblioteca.loan.loan.services.UpdateLoanService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,9 +50,9 @@ public class LoanControllerV1 {
         return listLoanService.findAll();
     }
 
-    @GetMapping(params = {"page", "size"}) //lista todas os emprestimos com paginação
-    public List<LoanReturnDTO> findPage(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
-        return listPageLoanService.findPage(page, size);
+    @GetMapping(path = "/page") //lista todas os emprestimos com paginação
+    public Page<LoanReturnDTO> findPage(Pageable pageable) {
+        return listPageLoanService.findPage(pageable);
     }
 
     @ResponseStatus(code = HttpStatus.CREATED)

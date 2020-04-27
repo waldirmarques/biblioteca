@@ -20,6 +20,7 @@ import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,12 +30,16 @@ public class SaveLoanServiceTest {
 
     @Mock
     private LoanRepository loanRepository;
+    @Mock
     private SaveLoanServiceImpl saveLoan;
+    @Mock
     private GetBook getBook;
+    @Mock
     private GetUserApp getUserApp;
+    @Mock
     private UpdateUserApp updateUserApp;
+    @Mock
     private UpdateBook updateBook;
-
 
 
     @BeforeEach
@@ -51,14 +56,14 @@ public class SaveLoanServiceTest {
 
         //preparação
         ArgumentCaptor<Loan> captorLoan = ArgumentCaptor.forClass(Loan.class);
-        verify(loanRepository).save(captorLoan.capture());
+        verify(loanRepository, times(2)).save(captorLoan.capture());
 
         Loan result = captorLoan.getValue();
 
         //verificação
         assertAll("Loan",
-                () -> assertThat(result.getUserApp(), is("teste nome")),
-                () -> assertThat(result.getBook(), is("teste title")),
+                () -> assertThat(result.getUserApp(), is("001")),
+                () -> assertThat(result.getBook(), is("001")),
                 () -> assertThat(result.getLoanTime(), is("50 dias"))
         );
     }
