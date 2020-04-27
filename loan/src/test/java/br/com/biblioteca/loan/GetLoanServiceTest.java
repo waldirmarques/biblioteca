@@ -3,7 +3,6 @@ package br.com.biblioteca.loan;
 import br.com.biblioteca.loan.exceptions.LoanNotFoundException;
 import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
-import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanRepository;
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
 import br.com.biblioteca.loan.loan.services.GetLoanServiceImpl;
@@ -16,13 +15,20 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import static br.com.biblioteca.loan.builders.BookBuilder.createBook;
 import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
+import static br.com.biblioteca.loan.builders.UserAppBuilder.createUserApp;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,8 +38,11 @@ public class GetLoanServiceTest {
 
     @Mock
     private LoanRepository loanRepository;
+    @Mock
     private GetLoanServiceImpl findLoan;
+    @Mock
     private GetBook getBook;
+    @Mock
     private GetUserApp getUserApp;
 
 
@@ -50,10 +59,16 @@ public class GetLoanServiceTest {
                 Optional.of(createLoan().loanTime("Loan Teste GET").build())
         );
 
+        when(getUserApp.userId(anyString())).thenReturn(createUserApp().build());
+
+        lenient().when(getBook.bookAllId(anyString())).thenReturn(Stream.of(createBook().id(1L).build(),
+                createBook().id(2L).build()).collect(Collectors.toList()));
+
         LoanReturnDTO result = this.findLoan.find(1L);
 
         //verificação
         assertAll("Loan",
+                () -> assertThat(result.getBooks().size(), is(2)),
                 () -> assertThat(result.getUserApp().getName(), is("teste nome")),
                 () -> assertThat(result.getBooks().get(0).getTitle(), is("teste title")),
                 () -> assertThat(result.getLoanTime(), is("Loan Teste GET"))

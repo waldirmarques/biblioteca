@@ -11,5 +11,4 @@ public class LoanBuilder {
                 .book("001")
                 .loanTime("50 dias");
     }
-
 }

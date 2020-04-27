@@ -3,7 +3,9 @@ package br.com.biblioteca.loan;
 import br.com.biblioteca.loan.exceptions.LoanNotDeletedException;
 import br.com.biblioteca.loan.feign.UpdateBook;
 import br.com.biblioteca.loan.feign.UpdateUserApp;
+import br.com.biblioteca.loan.loan.LoanBookSpecificIdDTO;
 import br.com.biblioteca.loan.loan.LoanRepository;
+import br.com.biblioteca.loan.loan.LoanUserAppSpecificIdDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
+import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.lenient;
@@ -41,6 +44,17 @@ public class DeleteLoanServiceTest {
     @DisplayName("Deve deletar um emprestimo")
     void shouldLoanDeleted() {
         when(loanRepository.existsById(1L)).thenReturn(true);
+        deleteLoan.delete(1L);
+        verify(loanRepository).existsById(1L);
+    }
+
+    @Test
+    @DisplayName("Deve deletar um emprestimo e atualizar o campo de loanSpecificID em book e user")
+    void shouldLoanDeletedUpdateLoanSpecificIdMicroservices() {
+        lenient().when(loanRepository.existsById(1L)).thenReturn(true);
+        //when(loanRepository.findById(1L)).thenReturn(Optional.of(createLoan().id(1L).build()));
+        //verify(updateBook.updateBook("001", new LoanBookSpecificIdDTO());
+        //updateUserApp.updateUserApp("001", new LoanUserAppSpecificIdDTO(null));
         deleteLoan.delete(1L);
         verify(loanRepository).existsById(1L);
     }

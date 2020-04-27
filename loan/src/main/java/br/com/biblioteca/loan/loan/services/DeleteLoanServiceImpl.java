@@ -19,8 +19,6 @@ public class DeleteLoanServiceImpl implements DeleteLoanService {
     private final LoanRepository loanRepository;
     private final UpdateUserApp updateUserApp;
     private final UpdateBook updateBook;
-    private LoanUserAppSpecificIdDTO loanUserAppSpecificIdDTO = new LoanUserAppSpecificIdDTO();
-    private LoanBookSpecificIdDTO loanBookSpecificIdDTO = new LoanBookSpecificIdDTO();
 
     @Override
     public void delete(Long id) {
@@ -31,10 +29,8 @@ public class DeleteLoanServiceImpl implements DeleteLoanService {
         Optional<Loan> loanApp = loanRepository.findById(id);
         if (loanApp.isPresent()) {
             Loan loan = loanApp.get();
-            loanUserAppSpecificIdDTO.setLoanSpecificID(null);
-            loanBookSpecificIdDTO.setLoanSpecificID(null);
-            updateUserApp.updateUserApp(loan.getUserApp(), loanUserAppSpecificIdDTO);
-            updateBook.updateBook(loan.getBook(), loanBookSpecificIdDTO);
+            updateUserApp.updateUserApp(loan.getUserApp(), new LoanUserAppSpecificIdDTO(null));
+            updateBook.updateBook(loan.getBook(), new LoanBookSpecificIdDTO(null));
         }
         loanRepository.deleteById(id);
     }

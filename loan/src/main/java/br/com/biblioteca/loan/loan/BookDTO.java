@@ -1,16 +1,16 @@
 package br.com.biblioteca.loan.loan;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -34,8 +34,8 @@ public class BookDTO {
     private String author; //autor
 
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date yearBook; //ano
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate yearBook; //ano
 
     private String specificID;
 

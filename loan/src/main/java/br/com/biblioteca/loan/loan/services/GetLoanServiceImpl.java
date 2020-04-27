@@ -3,11 +3,15 @@ package br.com.biblioteca.loan.loan.services;
 import br.com.biblioteca.loan.exceptions.LoanNotFoundException;
 import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
+import br.com.biblioteca.loan.loan.BookDTO;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanRepository;
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
+import br.com.biblioteca.loan.loan.UserAppDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -20,6 +24,8 @@ public class GetLoanServiceImpl implements GetLoanService {
     @Override
     public LoanReturnDTO find(Long id) {
         Loan loan = loanRepository.findById(id).orElseThrow(LoanNotFoundException::new);
-        return LoanReturnDTO.from(loan, getUserApp.userId(loan.getUserApp()), getBook.bookAllId(loan.getLoanSpecificID()));
+        UserAppDTO userAppDTO = getUserApp.userId(loan.getUserApp());
+        List<BookDTO> bookDTOList = getBook.bookAllId(loan.getLoanSpecificID());
+        return LoanReturnDTO.from(loan, userAppDTO, bookDTOList);
     }
 }
