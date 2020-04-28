@@ -13,14 +13,18 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static br.com.biblioteca.loan.builders.BookBuilder.createBook;
 import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
+import static br.com.biblioteca.loan.builders.LoanReturnBuilder.createLoanReturn;
 import static br.com.biblioteca.loan.builders.UserAppBuilder.createUserApp;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -63,7 +67,9 @@ public class ListPageLoanServiceTest {
 
         when(getBook.bookAllId(anyString())).thenReturn(Stream.of(createBook().author("Author Teste GET 01").build()).collect(Collectors.toList()));
 
-        Page<LoanReturnDTO> loanPage = listPageLoan.findPage(Pageable.unpaged());
+        Pageable pageable = PageRequest.of(0,2);
+
+        Page<LoanReturnDTO> loanPage  = listPageLoan.findPage(pageable);
 
         assertAll("loan",
                 () -> assertThat(loanPage.getNumber(), is(0)),

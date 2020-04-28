@@ -14,7 +14,7 @@ public class SaveBookServiceImpl implements SaveBookService {
     @Override
     public void insert(Book book) {
         bookRepository.save(book);
-        book.setLoanSpecificID(gerarSpecificId(book.getId()));
+        book.setSpecificID(gerarSpecificId(book.getId()));
         bookRepository.save(book);
     }
 

@@ -13,5 +13,5 @@ import lombok.Setter;
 @Builder(builderClassName = "Builder")
 public class BookSaveDTO {
 
-    private String loanSpecificID;
+    private String specificID;
 }

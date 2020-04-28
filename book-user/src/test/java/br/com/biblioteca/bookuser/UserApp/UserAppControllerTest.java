@@ -30,6 +30,7 @@ import java.util.Collections;
 import static br.com.biblioteca.bookuser.UserApp.builders.UserAppBuilder.createUserApp;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -76,6 +77,18 @@ public class UserAppControllerTest {
                 .andExpect(jsonPath("$.name", is("teste nome")))
                 .andExpect(jsonPath("$.age", is(20)))
                 .andExpect(jsonPath("$.fone", is("teste fone")));
+    }
+
+    @Test
+    @DisplayName("Retorna exception quando não encontra o usuário por id")
+    void whenValidExceptionGetIdUserApp() throws Exception {
+
+        //when(getUserAppService.find(anyLong())).thenReturn(createUserApp().id(2L).build());
+
+        mockMvc.perform(get("/v1/api/user/{id}",2L)
+                .accept(MediaType.APPLICATION_JSON ))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 
     @Test

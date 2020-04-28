@@ -43,4 +43,15 @@ public class Loan implements Serializable {
                 .loanSpecificID(loanDTO.getLoanSpecificID())
                 .build();
     }
+
+    public static Loan to(LoanSaveDTO saveDTO, String bookId) {
+        return Loan
+                .builder()
+                .id(saveDTO.getId())
+                .userApp(saveDTO.getUserApp())
+                .book(bookId)
+                .loanTime(saveDTO.getLoanTime())
+                .loanSpecificID(saveDTO.getLoanSpecificID())
+                .build();
+    }
 }

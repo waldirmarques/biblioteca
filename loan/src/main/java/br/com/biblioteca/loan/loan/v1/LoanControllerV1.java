@@ -3,6 +3,7 @@ package br.com.biblioteca.loan.loan.v1;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanDTO;
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
+import br.com.biblioteca.loan.loan.LoanSaveDTO;
 import br.com.biblioteca.loan.loan.LoanUpdateDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanService;
 import br.com.biblioteca.loan.loan.services.GetLoanService;
@@ -57,8 +58,8 @@ public class LoanControllerV1 {
 
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping() //adiciona um emprestimo Book
-    public void insert(@Valid @RequestBody LoanDTO loanDTO) {
-        saveLoanService.insert(Loan.to(loanDTO));
+    public void insert(@Valid @RequestBody LoanSaveDTO loanSaveDTO) {
+        saveLoanService.insert(loanSaveDTO);
     }
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
